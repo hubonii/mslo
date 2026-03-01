@@ -1,7 +1,7 @@
 # Musclo — Master Blueprint
 
 > **Version:** 1.0 · **Date:** 2026-03-01
-> **Stack:** React 18 + TypeScript + Vite + Tailwind CSS v3 + Framer Motion + Zustand | Laravel 11 + Sanctum + MySQL 8 | DeepSeek R1 API
+> **Stack:** React 19 + TypeScript 5 + Vite 7 + Tailwind CSS v3.4 + Framer Motion 11 + Zustand 5 | Laravel 12 + Sanctum + MySQL 8 | DeepSeek R1 API
 
 ---
 
@@ -207,11 +207,25 @@ Use **Radix UI Primitives** (headless, unstyled) + custom Tailwind styling. Do N
 | `EmptyState` | Custom | Illustration + CTA for "No workouts yet" scenarios |
 | `ConfirmDialog` | Radix `AlertDialog` | "Are you sure?" destructive confirmation |
 
+### 1.8 Logo Assets
+
+The Musclo logo features a **flexed bicep silhouette** in a bold, minimal style.
+
+| File | Location | Usage |
+|---|---|---|
+| `logo.png` | `public/logo.png` | Full horizontal logo (bicep icon + "MUSCLO" wordmark) — used in Sidebar header, login/register pages |
+| `logo-icon.png` | `public/logo-icon.png` | Icon-only square (bicep silhouette) — used in BottomNav brand slot, browser favicon, PWA icon |
+
+- On **dark mode**: Logo renders white (apply CSS `filter: invert(1)` or serve a white variant)
+- On **light mode**: Logo renders black (default)
+- Sidebar displays `logo.png` at 140×40px with `object-contain`
+- Favicon: Convert `logo-icon.png` to `favicon.svg` (or `.ico`) during build
+
 ---
 
 ## 2. Exact File & Folder Architecture
 
-### 2.1 Backend — `musclo-api/` (Laravel 11)
+### 2.1 Backend — `musclo-api/` (Laravel 12)
 
 ```
 musclo-api/
@@ -2272,7 +2286,7 @@ mysql --version # Expect 8.x
 composer create-project laravel/laravel musclo-api
 cd musclo-api
 
-# Step 1.2: Install Sanctum (included by default in Laravel 11, but ensure)
+# Step 1.2: Install Sanctum (included by default in Laravel 12, but ensure)
 php artisan install:api
 
 # Step 1.3: Configure .env
@@ -2404,7 +2418,7 @@ Step 3.15: src/components/ui/ConfirmDialog.tsx
 ### Phase 4: Build Layout & Auth
 
 ```
-Step 4.1:  src/components/layout/Sidebar.tsx — Desktop nav with logo, links, user avatar, theme toggle
+Step 4.1:  src/components/layout/Sidebar.tsx — Desktop nav with Musclo logo (`logo.png`), nav links, user avatar, theme toggle
 Step 4.2:  src/components/layout/BottomNav.tsx — Mobile nav with 5 icons (Dashboard, Routines, Workout, History, Exercises)
 Step 4.3:  src/components/layout/TopBar.tsx — Mobile header with page title, AI chat button
 Step 4.4:  src/components/layout/PageTransition.tsx — AnimatePresence wrapper using MOTION.pageEnter
